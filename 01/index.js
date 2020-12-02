@@ -1,10 +1,4 @@
-const fs = require('fs');
-
-function parseDataSync(relativeFilePath, format='utf8') {
-    const data = fs.readFileSync(relativeFilePath, format)
-    const splitData = data.split("\n");
-    return splitData.map(val => parseInt(val));
-}
+const { getParsedData } = require('../utils')
 
 function getAnswer(arr, targetSum) {
     if (!arr || !targetSum) throw new Error('Wtf');
@@ -39,14 +33,14 @@ function threeSum(arr, targetSum) {
         throw new Error('Array too small threeSum');
     }
     for (let i = 0; i < arr.length; i++) {
-        const returned = pairSum(arr.slice(i+1), targetSum-value)
+        const returned = pairSum(arr.slice(i+1), targetSum-arr[i])
         if (returned) {
-            return [value, ...returned]
+            return [arr[i], ...returned]
         }    
     }
     return null
 }
 
 
-const data = parseDataSync('./data');
+const data = getParsedData('./data');
 getAnswer(data, 2020);
