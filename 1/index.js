@@ -36,13 +36,14 @@ function pairSum(arr, targetSum) {
 
 function threeSum(arr, targetSum) {
     for (let i = 0; i < arr.length-2; i++) {
+        const value = arr[i]
         const subArr = arr.slice(i+1)
-        const returned = pairSum(subArr, targetSum-arr[i])
+        const returned = pairSum(subArr, targetSum-value)
         if (returned) {
-            return [arr[i], ...returned]
+            return [value, ...returned]
         }    
     }
-    throw new Error('Three sum needs to find something');
+    return null
 }
 
 
