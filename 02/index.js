@@ -45,6 +45,8 @@ function validateTwo(min, max, rule, password) {
     const isFirst = password[min] === rule
     const isSecond = password[max] === rule
     return isFirst !== isSecond;
+
+    // alternatively isFirst ^ isSecond
 }
 
 const validNumber = data.reduce((sum, entry) => {
