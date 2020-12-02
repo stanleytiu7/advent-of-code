@@ -22,7 +22,7 @@ function getAnswer(arr, targetSum) {
 function pairSum(arr, targetSum) {
     const cache = {};
     if (arr.length < 2) {
-        throw new Error('Out of bounds pairSum');
+        throw new Error('Array too small pairSum');
     }
     for (const num of arr) {
         if (!cache[num]) {
@@ -35,10 +35,11 @@ function pairSum(arr, targetSum) {
 }
 
 function threeSum(arr, targetSum) {
-    for (let i = 0; i < arr.length-2; i++) {
-        const value = arr[i]
-        const subArr = arr.slice(i+1)
-        const returned = pairSum(subArr, targetSum-value)
+    if (arr.length < 3) {
+        throw new Error('Array too small threeSum');
+    }
+    for (let i = 0; i < arr.length; i++) {
+        const returned = pairSum(arr.slice(i+1), targetSum-value)
         if (returned) {
             return [value, ...returned]
         }    
