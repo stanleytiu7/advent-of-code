@@ -36,10 +36,15 @@ function validateOne(min, max, rule, password) {
 // 2-9 c: ccccccccc is invalid: both position 2 and position 9 contain c.
 // index by 1 not 0
 function validateTwo(min, max, rule, password) {
-    const isFirst = password[min] === rule && password[max] !== rule 
-    const isSecond = password[min] !== rule && password[max] === rule
+    // const isFirst = password[min] === rule && password[max] !== rule 
+    // const isSecond = password[min] !== rule && password[max] === rule
 
-    return isFirst || isSecond
+    // return isFirst || isSecond
+    // this is dumb
+    //
+    const isFirst = password[min] === rule
+    const isSecond = password[max] === rule
+    return isFirst !== isSecond;
 }
 
 const validNumber = data.reduce((sum, entry) => {
