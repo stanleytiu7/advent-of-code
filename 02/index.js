@@ -1,7 +1,7 @@
 const { getParsedData } = require('../utils');
 const data = getParsedData('./data')
 
-function parseEntry(entry, fn) {
+function parseEntry(entry, validateFn) {
     if (!entry) return
     const split = entry.split(':');
     const rules = split[0];
@@ -9,7 +9,7 @@ function parseEntry(entry, fn) {
     if (!password) throw new Error(password);
 
     const [min, max, rule] = parseRules(rules)
-    return fn(min, max, rule, password)
+    return validateFn(min, max, rule, password)
 }
 
 function parseRules(rules) {
