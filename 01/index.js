@@ -42,5 +42,5 @@ function threeSum(arr, targetSum) {
 }
 
 
-const data = getParsedData('./data');
+const data = getParsedData('./data').map(val => parseInt(val));
 getAnswer(data, 2020);
