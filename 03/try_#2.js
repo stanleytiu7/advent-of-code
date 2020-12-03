@@ -9,7 +9,7 @@ function treeSum(data, x_slope, y_slope) {
     let x = 0;
     for (let y = 0; y < data.length; y-=y_slope) {
         const row = data[y];
-        sum += row[x % row.length] === '#';
+        sum += row[x % row.length] === '#'; // 1 + a bool will convert the bool to 0 if false, 1 if true. This is only true for js or python
         x += x_slope;
     }
     return sum;
