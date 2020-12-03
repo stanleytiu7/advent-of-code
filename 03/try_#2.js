@@ -1,7 +1,7 @@
 const {getParsedData} = require('../utils')
 const data = getParsedData('./data');
 
-// the key insight is that module simplifies away out of bounds errors
+// the key insight is that modulo simplifies away out of bounds errors
 // 1 % 30 will be 1, while 30 % 30 will be 0.
 // this is an essential tool when tackling these looping boundary problems
 function treeSum(data, x_slope, y_slope) {
