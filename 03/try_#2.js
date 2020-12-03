@@ -15,9 +15,9 @@ function treeSum(data, x_slope, y_slope) {
     return sum;
 }
  
+let product = 1;
 for (const pair of [[1,-1], [3,-1], [5,-1],[7,-1],[1,-2]]) {
-    let product = 1;
     product *= treeSum(data, pair[0], pair[1]);
 }
-
 console.log(product)
+
