@@ -1,3 +1,5 @@
+// take aways, use modulo rather than trying to manually loop
+
 const {getParsedData} = require('../utils');
 const data = getParsedData('./data')
 
