@@ -79,6 +79,12 @@ function getKeys(row) {
 
 /**
  * validate the row against the required fields
+ * we look at the required keys, and filter against the provided.
+ * If the key exists and the data is valid, we filter out the requiredField from the array
+ *
+ * We then check for length to see if any required fields are left invalid.
+ * A more optimal solution could check for all valid keys first before running the validations
+ * for the data
  */
 function validateRow(row, requiredFields) {
     const passport = getKeys(row)
