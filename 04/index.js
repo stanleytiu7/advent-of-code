@@ -30,10 +30,11 @@ const requiredFields = {
 // If cm, the number must be at least 150 and at most 193.
 // If in, the number must be at least 59 and at most 76.
     hgt: (v) => {
-        const nums = v.slice(0, v.length-2);
-        if (/cm$/.test(v)) {
+        const nums = +v.slice(0, v.length-2);
+        if (nums === NaN) throw new Error('Wrong')
+        if (v.slice(-2) === 'cm') {
             return nums >= 150 && nums <= 193
-        } else if (/in$/.test(v)) {
+        } else if (v.slice(-2) === 'in') {
             return nums >= 59 && nums <= 76
         } else {
             return false
@@ -63,7 +64,7 @@ const optionalFields = ['cid']
 /**
  * get the keys from the passport row
  */
-function getKeys(row) {
+function parseRow(row) {
     const split = row.split(' ');
     const parseKeys = split.map(v=> {
         const [key, val] = v.split(':');
@@ -87,7 +88,7 @@ function getKeys(row) {
  * for the data
  */
 function validateRow(row, requiredFields) {
-    const passport = getKeys(row)
+    const passport = parseRow(row)
     const required = Object.keys(requiredFields);
     const filtered = required.filter(v => {
         const validateFn = requiredFields[v];
