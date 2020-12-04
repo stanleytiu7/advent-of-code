@@ -7,13 +7,26 @@ const fs = require('fs')
 /**
  * parse the passports to rows
  */
-function parseData(data) {
-    const passports = data.split('\n').join(' ').split('  ')
-    return passports
+function parseInput(str) {
+        return str.split('\n\n').map(block => {
+            const result = {};
+            block.replace(/\n/g, ' ').split(' ')
+                .map(x => x.split(':'))
+                .forEach(x => result[x[0]] = x[1]);
+            return result;
+        });
 }
 
+/**
+ * this is the dumb way I was doing it before, and using a parser to get the info
+ */
+// function parseData(data) {
+//     const passports = data.split('\n').join(' ').split('  ')
+//     return passports
+// }
+
 const unparsed_data = fs.readFileSync('./data', 'utf-8');
-const data = parseData(unparsed_data)
+const data = parseInput(unparsed_data)
 
 
 const requiredFields = {
@@ -52,20 +65,21 @@ const optionalFields = ['cid']
 
 /**
  * get the keys from the passport row
+ * this ends up being unnecessary with the new parser
  */
-function parseRow(row) {
-    const split = row.split(' ');
-    const parseKeys = split.map(v=> {
-        const [key, val] = v.split(':');
-    })
+// function parseRow(row) {
+//     const split = row.split(' ');
+//     const parseKeys = split.map(v=> {
+//         const [key, val] = v.split(':');
+//     })
 
-    const final = split.reduce((accum, v) => {
-        const [key, value] = v.split(':');
-        accum[key] = value;
-        return accum;
-    },{})
-    return final;
-}
+//     const final = split.reduce((accum, v) => {
+//         const [key, value] = v.split(':');
+//         accum[key] = value;
+//         return accum;
+//     },{})
+//     return final;
+// }
 
 /**
  * validate the row against the required fields
@@ -77,12 +91,11 @@ function parseRow(row) {
  * for the data
  */
 function validateRow(row, requiredFields) {
-    const passport = parseRow(row)
     const required = Object.keys(requiredFields);
     const filtered = required.filter(v => {
         const validateFn = requiredFields[v];
-        if(passport[v]) {
-            return !validateFn(passport[v])
+        if(row[v]) {
+            return !validateFn(row[v])
         }
         return true
     })
