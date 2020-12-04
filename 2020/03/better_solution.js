@@ -1,5 +1,6 @@
-const {getRawInput} = require('../lib')
+const {getRawInput} = require('../../lib')
 const data = getRawInput().split('\n');
+run()
 
 // the key insight is that modulo simplifies away out of bounds errors
 // 1 % 30 will be 1, while 30 % 30 will be 0, 31 % 30 will be 1... so on
@@ -15,9 +16,11 @@ function treeSum(data, x_slope, y_slope) {
     return sum;
 }
  
-let product = 1;
-for (const pair of [[1,-1], [3,-1], [5,-1],[7,-1],[1,-2]]) {
-    product *= treeSum(data, pair[0], pair[1]);
+function run() {
+    let product = 1;
+    for (const pair of [[1,-1], [3,-1], [5,-1],[7,-1],[1,-2]]) {
+        product *= treeSum(data, pair[0], pair[1]);
+    }
+    console.log(product)
 }
-console.log(product)
 

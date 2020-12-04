@@ -2,6 +2,9 @@
 
 const {getRawInput} = require('../../lib');
 const data = getRawInput().split('\n')
+const slopes = [[1,-1], [3,-1], [5,-1],[7,-1],[1,-2]]
+
+run();
 
 // data each entry is a row, and each string position is a y
 
@@ -51,10 +54,10 @@ function getTreeCollisions(data, x_slope, y_slope){
     return treesEncountered
 }
 
-const slopes = [[1,-1], [3,-1], [5,-1],[7,-1],[1,-2]]
-
-let product = 1;
-for (const pair of slopes) {
-    product *= getTreeCollisions(data, pair[0], pair[1])
+function run() {
+    let product = 1;
+    for (const pair of slopes) {
+        product *= getTreeCollisions(data, pair[0], pair[1])
+    }
+    console.log(product)
 }
-console.log(product)

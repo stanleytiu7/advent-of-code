@@ -1,5 +1,6 @@
 const { getRawInput } = require('../../lib');
 const data = getRawInput().split('\n')
+run()
 
 function parseEntry(entry, validateFn) {
     if (!entry) return
@@ -49,9 +50,11 @@ function validateTwo(min, max, rule, password) {
     // alternatively isFirst ^ isSecond
 }
 
-const validNumber = data.reduce((sum, entry) => {
-    if (parseEntry(entry, validateTwo)) return sum + 1
-    else return sum
-}, 0);
+function run() {
+    const validNumber = data.reduce((sum, entry) => {
+        if (parseEntry(entry, validateTwo)) return sum + 1
+        else return sum
+    }, 0);
 
-console.log(validNumber)
+    console.log(validNumber)
+}

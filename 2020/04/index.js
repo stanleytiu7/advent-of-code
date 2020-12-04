@@ -3,26 +3,7 @@
 // will limit that group to the number of chars specified
 // when reading from files, use paths not arguments. It's much easier
 // path.cwd() and path.argv[1] is nice, in addition to path.basename
-
-const fs = require('fs')
-const { getRawInput } = require('../../lib');
-const unparsed_data = getRawInput()
-
-/**
- * parse the passports to rows
- */
-function parseInput(str) {
-        return str.split('\n\n').map(block => {
-            const result = {};
-            block.replace(/\n/g, ' ').split(' ')
-                .map(x => x.split(':'))
-                .forEach(x => result[x[0]] = x[1]);
-            return result;
-        });
-}
-const data = parseInput(unparsed_data)
-
-
+//
 const requiredFields = {
     byr: (v) => {
         return /^\d{4}$/.test(v) && v >= 1920 && v <= 2002
@@ -55,6 +36,26 @@ const requiredFields = {
     }
 }
 
+const { getRawInput } = require('../../lib');
+const unparsed_data = getRawInput()
+const data = parseInput(unparsed_data)
+
+run();
+
+/**
+ * parse the passports to rows
+ */
+function parseInput(str) {
+        return str.split('\n\n').map(block => {
+            const result = {};
+            block.replace(/\n/g, ' ').split(' ')
+                .map(x => x.split(':'))
+                .forEach(x => result[x[0]] = x[1]);
+            return result;
+        });
+}
+
+
 // const optionalFields = ['cid']
 
 /**
@@ -78,11 +79,13 @@ function validateRow(row, requiredFields) {
     return !filtered.length;
 }
 
-let sum = 0;
-for (const row of data) {
-    sum += validateRow(row, requiredFields);
+function run() {
+    let sum = 0;
+    for (const row of data) {
+        sum += validateRow(row, requiredFields);
+    }
+    console.log(sum)
 }
- console.log(sum)
 
 
 // From first try...
