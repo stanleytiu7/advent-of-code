@@ -72,9 +72,11 @@ function validateRow(row, requiredFields) {
     const filtered = required.filter(v => {
         const validateFn = requiredFields[v];
         if(row[v]) {
+            // return everything but current entry if validated
             return !validateFn(row[v])
         }
-        return true
+        // return everything if no matching key
+        return false
     })
     return !filtered.length;
 }
