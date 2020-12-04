@@ -1,6 +1,6 @@
 // take aways, use modulo rather than trying to manually loop
 
-const {getRawInput} = require('../lib');
+const {getRawInput} = require('../../lib');
 const data = getRawInput().split('\n')
 
 // data each entry is a row, and each string position is a y

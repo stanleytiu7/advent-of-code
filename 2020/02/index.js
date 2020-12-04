@@ -1,4 +1,4 @@
-const { getRawInput } = require('../lib');
+const { getRawInput } = require('../../lib');
 const data = getRawInput().split('\n')
 
 function parseEntry(entry, validateFn) {

@@ -1,4 +1,4 @@
-const { getRawInput } = require('../lib')
+const { getRawInput } = require('../../lib')
 
 function getAnswer(arr, targetSum) {
     if (!arr || !targetSum) throw new Error('Wtf');

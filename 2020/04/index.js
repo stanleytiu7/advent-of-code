@@ -5,7 +5,7 @@
 // path.cwd() and path.argv[1] is nice, in addition to path.basename
 
 const fs = require('fs')
-const { getRawInput } = require('../lib');
+const { getRawInput } = require('../../lib');
 const unparsed_data = getRawInput()
 
 /**
