@@ -1,6 +1,6 @@
 // take aways, use modulo rather than trying to manually loop
 
-const {getRawInput} = require('../../lib');
+const {getRawInput} = require('../lib');
 const data = getRawInput().split('\n')
 const slopes = [[1,-1], [3,-1], [5,-1],[7,-1],[1,-2]]
 

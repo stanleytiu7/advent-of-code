@@ -4,6 +4,7 @@
 // when reading from files, use paths not arguments. It's much easier
 // path.cwd() and path.argv[1] is nice, in addition to path.basename
 //
+const { chalk, getRawInput } = require('../lib');
 const requiredFields = {
     byr: (v) => {
         return /^\d{4}$/.test(v) && v >= 1920 && v <= 2002
@@ -36,7 +37,6 @@ const requiredFields = {
     }
 }
 
-const { getRawInput } = require('../../lib');
 const unparsed_data = getRawInput()
 const data = parseInput(unparsed_data)
 
