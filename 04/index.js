@@ -1,8 +1,12 @@
 // take aways, objects are more flexible than arrays.
 // you can use lengths in regexs. Groups followed by {#} 
 // will limit that group to the number of chars specified
+// when reading from files, use paths not arguments. It's much easier
+// path.cwd() and path.argv[1] is nice, in addition to path.basename
 
 const fs = require('fs')
+const { getRawInput } = require('../lib');
+const unparsed_data = getRawInput()
 
 /**
  * parse the passports to rows
@@ -16,16 +20,6 @@ function parseInput(str) {
             return result;
         });
 }
-
-/**
- * this is the dumb way I was doing it before, and using a parser to get the info
- */
-// function parseData(data) {
-//     const passports = data.split('\n').join(' ').split('  ')
-//     return passports
-// }
-
-const unparsed_data = fs.readFileSync('./data', 'utf-8');
 const data = parseInput(unparsed_data)
 
 
@@ -61,25 +55,7 @@ const requiredFields = {
     }
 }
 
-const optionalFields = ['cid']
-
-/**
- * get the keys from the passport row
- * this ends up being unnecessary with the new parser
- */
-// function parseRow(row) {
-//     const split = row.split(' ');
-//     const parseKeys = split.map(v=> {
-//         const [key, val] = v.split(':');
-//     })
-
-//     const final = split.reduce((accum, v) => {
-//         const [key, value] = v.split(':');
-//         accum[key] = value;
-//         return accum;
-//     },{})
-//     return final;
-// }
+// const optionalFields = ['cid']
 
 /**
  * validate the row against the required fields
@@ -107,3 +83,34 @@ for (const row of data) {
     sum += validateRow(row, requiredFields);
 }
  console.log(sum)
+
+
+// From first try...
+/**
+ * this is the dumb way I was doing it before, and using a parser to get the info
+ */
+// function parseData(data) {
+//     const passports = data.split('\n').join(' ').split('  ')
+//     return passports
+// }
+
+// const unparsed_data = fs.readFileSync('./data', 'utf-8');
+//
+//
+/**
+ * get the keys from the passport row
+ * this ends up being unnecessary with the new parser
+ */
+// function parseRow(row) {
+//     const split = row.split(' ');
+//     const parseKeys = split.map(v=> {
+//         const [key, val] = v.split(':');
+//     })
+
+//     const final = split.reduce((accum, v) => {
+//         const [key, value] = v.split(':');
+//         accum[key] = value;
+//         return accum;
+//     },{})
+//     return final;
+// }
