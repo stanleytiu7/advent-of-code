@@ -1,5 +1,5 @@
-const { getParsedData } = require('../utils');
-const data = getParsedData('./data')
+const { getRawInput } = require('../lib');
+const data = getRawInput().split('\n')
 
 function parseEntry(entry, validateFn) {
     if (!entry) return

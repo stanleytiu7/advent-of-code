@@ -1,7 +1,7 @@
 // take aways, use modulo rather than trying to manually loop
 
-const {getParsedData} = require('../utils');
-const data = getParsedData('./data')
+const {getRawInput} = require('../lib');
+const data = getRawInput().split('\n')
 
 // data each entry is a row, and each string position is a y
 
@@ -57,4 +57,4 @@ let product = 1;
 for (const pair of slopes) {
     product *= getTreeCollisions(data, pair[0], pair[1])
 }
-// console.log(product)
+console.log(product)

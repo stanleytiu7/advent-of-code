@@ -1,5 +1,5 @@
-const {getParsedData} = require('../utils')
-const data = getParsedData('./data');
+const {getRawInput} = require('../lib')
+const data = getRawInput().split('\n');
 
 // the key insight is that modulo simplifies away out of bounds errors
 // 1 % 30 will be 1, while 30 % 30 will be 0, 31 % 30 will be 1... so on

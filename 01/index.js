@@ -1,4 +1,4 @@
-const { getParsedData } = require('../utils')
+const { getRawInput } = require('../lib')
 
 function getAnswer(arr, targetSum) {
     if (!arr || !targetSum) throw new Error('Wtf');
@@ -42,5 +42,6 @@ function threeSum(arr, targetSum) {
 }
 
 
-const data = getParsedData('./data').map(val => parseInt(val));
+const data = getRawInput().split('\n')
+    // .map(val => parseInt(val));
 getAnswer(data, 2020);
