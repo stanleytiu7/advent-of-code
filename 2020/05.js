@@ -18,6 +18,7 @@ function parse(row) {
     return binarySearch(rowNum, 'F', 'B', 127) * 8 + binarySearch(seat, 'L', 'R', 7)
 }
 
+// i hate implementing binary search using indices, I have to practice this.
 function binarySearch(rowString, l, r, max) {
     let left = 0;
     let right = max;
