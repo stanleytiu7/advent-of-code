@@ -24,6 +24,9 @@ function parseGroup(group) {
             else cache[question]++
         }
     }
+
+    // part 1
+    // return Object.keys(cache).length
     
     let returned = 0;
     for (const key of Object.keys(cache)) {
