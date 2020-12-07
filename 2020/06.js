@@ -2,6 +2,7 @@ const { getRawInput } = require('../lib');
 
 const unparsed = getRawInput();
 const data = unparsed.split('\n\n');
+console.log(data.slice[-1])
 
 const test = 'abc\n\na\nb\nc\n\nab\nac\n\na\na\na\na\n\nb'.split('\n\n')
 
