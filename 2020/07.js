@@ -1,3 +1,12 @@
+/*
+ * Takeaways - trees are complicated. 
+ * Don't try to implement one unless you absolutely have to.
+ * Pointers end up being easier.
+ * 
+ * breadth first searching didnt work for my sum, I had to do depth first search,
+ * so my implementation is bad. If I went back and did this again, I would try morph the data less
+ */
+
 const { getRawInput } = require("../lib");
 
 const unparsed = getRawInput();
