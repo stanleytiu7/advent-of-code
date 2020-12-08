@@ -35,15 +35,19 @@ function search(data, i, accum = 0, visited = {}) {
     }
 }
 
+// for every line in the data, we will replace the data with the replacement. If it works, great we got the answer,
+// otherwise we place with the original instruction and continue on. It took a while to implement because I've never
+// implemented a bruteforce like this one, with enumerating all possible paths of solution.
 function bruteForce(data) {
     for (let j = 0; j < data.length; j++) {
         if (/nop|jmp/.test(data[j])) {
+            const copy = data[j];
             data[j] = replaceLine(data[j])
             const [sum, index] = search(data, 0)
             if (index >= data.length-1) {
                 return sum;
             }
-            data[j] = replaceLine(data[j])
+            data[j] = copy;
         }
     }
     return null;
