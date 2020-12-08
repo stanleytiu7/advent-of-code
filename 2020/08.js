@@ -11,7 +11,7 @@ function run(data){
 
 function parse(data) {
     let [sum, i] = search(data, 0)
-    let maxSum = backtrackData(data)
+    let maxSum = bruteForce(data)
     console.log(sum, i)
     console.log(maxSum)
 }
@@ -35,7 +35,7 @@ function search(data, i, accum = 0, visited = {}) {
     }
 }
 
-function backtrackData(data) {
+function bruteForce(data) {
     for (let j = 0; j < data.length; j++) {
         if (/nop/.test(data[j])) {
             data[j] = replaceLine(data[j], "jmp")
