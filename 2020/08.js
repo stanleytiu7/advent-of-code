@@ -41,7 +41,7 @@ function search(data, i = 0, accum = 0, visited = {}) {
 
 // for every line in the data, we will replace the data with the replacement. If it works, great we got the answer,
 // otherwise we place with the original instruction and continue on. It took a while to implement because I've never
-// implemented a bruteforce like this one, with enumerating all possible paths of solution.
+// i wanted it so badly to be backtracking, but brute forcing here is perfectly fine since the data isn't insane
 function bruteForce(data) {
     for (let j = 0; j < data.length; j++) {
         if (/nop|jmp/.test(data[j])) {
