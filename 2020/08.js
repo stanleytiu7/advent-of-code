@@ -16,11 +16,9 @@ function run(data){
 // something like jumping back to the original nop or jmp replaced and continuing with original instructions
 // , but I was too dumb. I ended up abandoning that
 // and using something like a brute force
-function search(data, i = 0, accum = 0, visited = {}) {
-    visited[i] ? visited[i]++ : visited[i] = 1
-    if (visited[i] === 2 || i >= data.length-1) {
-        return [accum, i]
-    }
+function search(data, i = 0, accum = 0, visited = new Set()) {
+    if (visited.has(i) || i >= data.length-1) return [accum, i]
+    visited.add(i)
     const [instruct, val] = data[i].split(' ')
     switch(instruct) {
         case 'acc':
