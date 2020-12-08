@@ -10,13 +10,13 @@ function run(data){
 };
 
 function parse(data) {
-    let [sum, i] = search(data, 0)
+    let [sum, i] = search(data)
     let maxSum = bruteForce(data)
     console.log(sum)
     console.log(maxSum)
 }
 
-function search(data, i, accum = 0, visited = {}) {
+function search(data, i = 0, accum = 0, visited = {}) {
     visited[i] ? visited[i]++ : visited[i] = 1
     if (visited[i] === 2 || i >= data.length-1) {
         return [accum, i]
@@ -43,10 +43,8 @@ function bruteForce(data) {
         if (/nop|jmp/.test(data[j])) {
             const copy = data[j];
             data[j] = replaceLine(data[j])
-            const [sum, index] = search(data, 0)
-            if (index >= data.length-1) {
-                return sum;
-            }
+            const [sum, index] = search(data)
+            if (index >= data.length-1) return sum;
             data[j] = copy;
         }
     }
