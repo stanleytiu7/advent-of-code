@@ -6,15 +6,11 @@ const data = unparsed.split('\n');
 run(data);
 
 function run(data){
-    parse(data)
-};
-
-function parse(data) {
     let [sum, i] = search(data)
     let maxSum = bruteForce(data)
     console.log(sum)
     console.log(maxSum)
-}
+};
 
 // search ended up takign this weird form because i wanted to tackle the problem with backtracking
 // something like jumping back to the original nop or jmp replaced and continuing with original instructions
