@@ -12,7 +12,7 @@ function run(data){
 function parse(data) {
     let [sum, i] = search(data, 0)
     let maxSum = bruteForce(data)
-    console.log(sum, i)
+    console.log(sum)
     console.log(maxSum)
 }
 
@@ -37,26 +37,26 @@ function search(data, i, accum = 0, visited = {}) {
 
 function bruteForce(data) {
     for (let j = 0; j < data.length; j++) {
-        if (/nop/.test(data[j])) {
-            data[j] = replaceLine(data[j], "jmp")
+        if (/nop|jmp/.test(data[j])) {
+            data[j] = replaceLine(data[j])
             const [sum, index] = search(data, 0)
             if (index >= data.length-1) {
                 return sum;
             }
-            data[j] = replaceLine(data[j], "nop")
-        } else if (/jmp/.test(data[j])){
-            data[j] = replaceLine(data[j], "nop")
-            const [sum, index] = search(data, 0)
-            if (index >= data.length-1) {
-                return sum;
-            }
-            data[j] = replaceLine(data[j], "jmp")
+            data[j] = replaceLine(data[j])
         }
     }
     return null;
 }
 
-function replaceLine(line, command) {
-    const val = line.split(" ")[1]
-    return `${command} ${val}`
+function replaceLine(line) {
+    const [instruction, val] = line.split(" ");
+    switch(instruction) {
+        case "nop":
+            return `jmp ${val}`;
+        case "jmp":
+            return `nop ${val}`;
+        default:
+            throw new Error('Wrong')
+    }
 }
