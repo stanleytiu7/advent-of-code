@@ -41,6 +41,10 @@ function bruteForce(data) {
         if (/nop|jmp/.test(data[j])) {
             const copy = data[j];
             data[j] = replaceLine(data[j])
+
+            // this is in-place, but maybe it's better to create a new copy of data honestly like below
+            // const copy = data.slice();
+            // copy[j] = replaceLine(copy[j])
             const [sum, index] = search(data)
             if (index >= data.length-1) return sum;
             data[j] = copy;
