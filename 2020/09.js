@@ -57,6 +57,3 @@ function validate(preamble, n) {
     if (found) return n;
     else return null;
 }
-
-// 25 numbers,
-// each number afterward will be the sum of any of the two 25 numbers
